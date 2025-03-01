@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 import io
 
-# Custom CSS to enhance the UI and add a footer watermark
+# Custom CSS to enhance the UI and style the footer
 st.markdown(
     """
     <style>
@@ -33,6 +33,12 @@ st.markdown(
         font-size: 12px;
         color: #888;
         padding: 10px;
+        text-align: center;
+    }
+    .footer a {
+        text-decoration: underline;
+        color: blue;
+        font-weight: normal;
     }
     </style>
     """,
@@ -60,6 +66,7 @@ with st.container():
         clean_image.putdata(image_data)
         
         st.success("Metadata has been removed from the image!")
+        st.balloons()
         
         # Prepare the image for download
         img_byte_arr = io.BytesIO()
@@ -76,5 +83,12 @@ with st.container():
             mime=f"image/{format.lower()}"
         )
 
-# Footer watermark displayed at the bottom center of the app
-st.markdown("<div class='footer'>Voyagers~ Creative I'm / We are</div>", unsafe_allow_html=True)
+# Footer watermark and developer link displayed at the bottom center of the app
+st.markdown(
+    """
+    <div class='footer'>
+        Voyagers~ Creative I'm / We are |  <br/>    <a href="https://template-6-api.vercel.app/about" target="_blank">Meet the Developer</a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
